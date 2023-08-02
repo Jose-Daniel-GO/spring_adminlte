@@ -28,8 +28,7 @@ class PostController extends Controller
     {
         $categories = Category::all();
         // dd($categories);
-        // return view('posts.index', compact('categories'));
-        return view('posts.index',  ['categories' => $categories]);
+        return view('posts.index', compact('categories'));
     }
     // public function index(){$categories = Category::all();return view('news.index', ['categories' => $categories]);}
     public function show(Post $post)
@@ -72,7 +71,7 @@ class PostController extends Controller
         $post->title = $request->txtTitulo;
         $post->slug = Str::slug($request->txtTitulo);
         $post->body = $request->txtDescripcion;
-        $post->user_id = Auth::user()->id;
+        $post->user_id = auth()->user()->id ;
         $post->category_id = $request->category_id;
         $file = $request->file('foto');
         $nombre =  time() . "_" . $file->getClientOriginalName();
@@ -85,6 +84,6 @@ class PostController extends Controller
 
         Image::create(['url' => $url,'imageable_id' => $imagen_id,'imageable_type' => Post::class]);
 
-        return redirect()->route('post')->with('success', 'New Created succesfully');
+        return redirect()->route('posts.index')->with('success', 'New Created succesfully');
     }
 }

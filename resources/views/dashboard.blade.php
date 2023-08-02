@@ -14,28 +14,49 @@
                 <div class="card text-center" style="width: 18rem; margin-top: 50px">
                     <ul class="list-group list-group-flush">
                         <li class="list-group">
-                            <img style="height: 7rem;" src={{ asset($post->image->url) }} class="card-img-top"
-                                alt="...">
+                            <img style="height: 7rem;" src={{ asset($post->image->url) }} class="card-img-top" alt="...">
                         </li>
                         <li class="list-group-item">
                             <h6 class="card-title">{{ $post->title }}</h6>
                         </li>
                         <li class="list-group-item">
-                            <button class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#modal-{{ $post->id }}">Ver Noticia</button>
+                            {{-- <button class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#modal-{{ $post->id }}">Ver Noticia</button> --}}
+                            <livewire:post-modal-component :postId="$post->id" :wire:key="$post->id" />
                         </li>
                     </ul>
                 </div>
             </div>
-              <!-- Modal BUSCAR -->
-              @include('posts.modal.show')
+            <!-- Modal BUSCAR -->
+            {{-- @include('posts.modal.show') --}}
+            <!-- Modal -->
+            {{-- <div class="modal fade" id="modal-{{ $post->id }}" tabindex="-1"
+                aria-labelledby="postModalLabel_{{ $post->id }}" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="postModalLabel_{{ $post->id }}">{{ $post->title }}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                            </p>
+                            <p>Autor: 
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div> --}}
         @endforeach
         {{-- ======================== --}}
     </div>
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+    {{--   <link rel="stylesheet" href="/css/admin_custom.css"> --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
 @stop
 
