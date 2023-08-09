@@ -65,7 +65,8 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate(['foto' => 'required|image|max:2048', 'category_id' => 'required']);
+        $request->validate(['foto' => 'required|image|max:2048', 'category_id' => 'required',
+                            'txtTitulo' => 'required|max:29']);
 
         $post = new Post();
         $post->title = $request->txtTitulo;

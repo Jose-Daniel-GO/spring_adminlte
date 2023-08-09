@@ -10,6 +10,7 @@
     <title>Springfield posts</title>
 
     <link href="css/carousel/carousel.css" rel="stylesheet">
+    <link href="css/stars.css" rel="stylesheet">
     <!-- Bootstrap core CSS -->
     <!-- Scripts -->
     @vite(['resources/js/app.js'])
@@ -75,8 +76,8 @@
 
                         <div class="container">
                             <div class="carousel-caption text-start">
-                                {{-- <p><a class="btn btn-lg btn-primary" href="{{ route('posts.show', $post) }}">Ver
-                                        Noticia</a></p> --}}
+                                <p><a class="btn btn-lg btn-primary" href="{{ route('posts.show', $post) }}">Ver
+                                        Noticia</a></p>
                             </div>
                         </div>
                     </div>

@@ -22,12 +22,13 @@ class UserSeeder extends Seeder
             'email' => 'jose.jdgo97@gmail.com',
             'password' => bcrypt('12345678')
         ]);
-        $users = User::factory(2)->create();
+        // NO FUNCIONA EN ESTE PROYECTO YA QUE ES COPIA
+        // $users = User::factory(2)->create();
 
-        foreach($users as $user){
-            Image::factory(1)->create([
-                'imageable_id' => $user->id,
-                'imageable_type' => User::class]);
-        }
+        // foreach($users as $user){
+        //     Image::factory(1)->create([
+        //         'imageable_id' => $user->id,
+        //         'imageable_type' => User::class]);
+        // }
     }
 }

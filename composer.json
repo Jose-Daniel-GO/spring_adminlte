@@ -7,13 +7,12 @@
     "require": {
         "php": "^8.0.2",
         "guzzlehttp/guzzle": "^7.2",
-        "jeroennoten/laravel-adminlte": "^3.9",
+        "jeroennoten/laravel-adminlte": "^3.8",
         "laravel/framework": "^9.19",
-        "laravel/jetstream": "^3.0",
+        "laravel/jetstream": "^2.12",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
-        "laravel/ui": "^4.2",
-        "livewire/livewire": "^2.11"
+        "livewire/livewire": "^2.5"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
@@ -64,6 +63,6 @@
             "pestphp/pest-plugin": true
         }
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true
 }

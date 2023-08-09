@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\ModalController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
@@ -14,13 +17,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::resource('/articulos', 'App\Http\Controllers\ArticuloController');
 
 // POSTS
 Route::resource('/posts', 'App\Http\Controllers\PostController');
-// Route::get('/posts',[PostController::class, 'index'])->name('posts.index');
-// Route::post('posts',[PostController::class, 'store'])->name('posts.store');
-// Route::get('/posts/{post}',[PostController::class, 'show'])->name('posts.show');
+Route::resource('/categories', 'App\Http\Controllers\CategoriesController');
+
 // PRINCIPAL WELCOME
 Route::get('/', function () {
     $posts = Post::select('*')
@@ -28,7 +29,6 @@ Route::get('/', function () {
         ->where('imageable_type', '=', Post::class)
         ->orderBy('posts.id', 'desc') // comienza desde el ultimo post
         ->get();
-    // dd($posts);
 
     return view('welcome', compact('posts'));
     // return view('welcome');
@@ -47,8 +47,14 @@ Route::middleware([
         return view('dashboard', compact('posts'));
         // return view('dashboard');
     })->name('dashboard');
+    // Route::get('/profile', [UserController::class, 'profile']); 
 });
-
+// CATEGORY
+// Route::get('/categories',[CategoriesController::class, 'index'])->name('categories');
+// Route::post('categories',[CategoriesController::class, 'store'])->name('categories')->middleware('auth');
+// Route::post('categories/{id}',[CategoriesController::class, 'show'])->name('categories-edit')->middleware('auth');
+// Route::patch('categories/{id}',[CategoriesController::class, 'update'])->name('categories-update')->middleware('auth');
+// Route::delete('categories/{id}',[CategoriesController::class, 'destroy'])->name('categories-destroy')->middleware('auth');
 // Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

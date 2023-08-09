@@ -1,11 +1,70 @@
-@extends('layouts.app')
-@section('content')
-    <br>
-    <br>
-    <br>
-    <br>
+<!doctype html>
+<html lang="en">
 
-    <div class="container-fluid">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>Springfield posts</title>
+
+    <!-- Bootstrap core CSS -->
+    <!-- Scripts -->
+    @vite(['resources/js/app.js'])
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark  bg-dark">
+    {{-- <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark"> --}}
+        <div class="container">
+            <!-- Logo Image -->
+            <a class="navbar-brand " href="#">
+                <img src="{{ asset('images/logo.png') }}" alt="Logo" height="40" width="200" alt="JDGO">
+            </a>
+        </div>
+
+        <!-- Collapsible Navbar Menu -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                {{-- <li class="nav-item active">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li> --}}
+                @if (Route::has('login'))
+                    @auth
+                        <li class="nav-item">
+                            <a href="{{ url('/home') }}" class="btn btn-outline-success">Home</a>
+                        </li>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit">Cerrar sesión</button>
+                        </form>
+                    @else
+                        <li class="nav-item mx-2">
+                            <a href="{{ route('login') }}" class="btn btn-outline-success ">Log in</a>
+                        </li>
+                        @if (Route::has('register'))
+                            <li class="nav-item">
+                                <a href="{{ route('register') }}" class="btn btn-outline-primary ">Register</a>
+                            </li>
+                        @endif
+                    @endauth
+                @endif
+        </div>
+        </div>
+    </nav>
+{{-- 
+    <!-- Separator -->
+    <div class="border-top"></div> --}}
+    <main>
+    <div class="container-fluid mt-5">
 
         <div class="border flex-md-row mb-4 box-shadow h-md-250 pb-2">
             <nav aria-label="breadcrumb">
@@ -71,9 +130,9 @@
                                             {{-- <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block "> --}}
                                             @auth
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" name="comentario" id="comentario"
-                                                        placeholder="Realice un comentario" aria-label="Input group example"
-                                                        aria-describedby="btnGroupAddon">
+                                                    <input type="text" class="form-control" name="comentario"
+                                                        id="comentario" placeholder="Realice un comentario"
+                                                        aria-label="Input group example" aria-describedby="btnGroupAddon">
                                                     <div class="input-group-prepend ">
                                                         <button class="btn btn-primary" id="btnGroupAddon" type="submit">
                                                             <i class="far fa-paper-plane"></i>
@@ -89,8 +148,8 @@
 
                                         <div class="sl-item">
                                             <div class="sl-left">
-                                                <img src="{{ asset($post->image->url) }}" width="50" alt="user"
-                                                    class="rounded-circle">
+                                                <img src="{{ asset($post->image->url) }}" width="50"
+                                                    alt="user" class="rounded-circle">
                                                 <a href="javascript:void(0)" class="link">John Doe</a>
                                                 {{-- <span class="sl-date">5 minutes ago</span> --}}
 
@@ -110,8 +169,8 @@
                                                         <div class="" id="accordionFlushExample">
                                                             <div class="accordion-item">
                                                                 <h3 class="accordion-header" id="flush-headingOne">
-                                                                    <a class="accordion-button collapsed" type="button"
-                                                                        data-bs-toggle="collapse"
+                                                                    <a class="accordion-button collapsed"
+                                                                        type="button" data-bs-toggle="collapse"
                                                                         data-bs-target="#flush-collapseOne"
                                                                         aria-expanded="false"
                                                                         aria-controls="flush-collapseOne">
@@ -133,14 +192,16 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-12">
-                                                        <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                                        <div id="flush-collapseOne"
+                                                            class="accordion-collapse collapse"
                                                             aria-labelledby="flush-headingOne"
                                                             data-bs-parent="#accordionFlushExample">
                                                             {{-- <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block "> --}}
                                                             @auth
                                                                 <div class="input-group">
-                                                                    <input type="text" class="form-control" name="comentario"
-                                                                        id="comentario" placeholder="Realice un comentario"
+                                                                    <input type="text" class="form-control"
+                                                                        name="comentario" id="comentario"
+                                                                        placeholder="Realice un comentario"
                                                                         aria-label="Input group example"
                                                                         aria-describedby="btnGroupAddon">
                                                                     <div class="input-group-prepend ">
@@ -190,4 +251,7 @@
             </div>
         </div>
     </div>
-@endsection
+    </main>
+</body>
+
+</html>
