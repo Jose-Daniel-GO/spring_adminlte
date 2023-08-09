@@ -21,13 +21,14 @@ class CategoriesController extends Controller
     }
 
     public function store(Request $request)
-    {
+    { 
+        // dd($request);
         $request->validate(['name'=> 'required|max:255']);
         $category = new Category();
         $category->name=$request->name;
         $category->slug=$request->name;
         $category->save();
-        return redirect()->route('categories')->with('success', 'Category Created succesfully');
+        return redirect()->route('categories.index')->with('success', 'Category Created succesfully');
     }
 
 
@@ -56,11 +57,11 @@ class CategoriesController extends Controller
     public function destroy($id)
     {
         $categories = Category::find($id);
-        $categories->breakingNews()->each(function($breakingNews){
-            $breakingNews->delete();
+        $categories->posts()->each(function($posts){
+            $posts->delete();
         });
         $categories->delete();
         
-        return redirect()->route('categories')->with('success', 'Task deleted succesfully');
+        return redirect()->route('categories.index')->with('success', 'Task deleted succesfully');
     }
 }

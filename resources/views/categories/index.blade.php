@@ -11,7 +11,6 @@
 @section('title', 'Category')
 
 @section('content') --}}
-@extends('layouts.app')
 @extends('adminlte::page')
 
 {{-- @section('title', 'Crud con laravel 8') --}}
@@ -46,16 +45,19 @@
                 @foreach ($categories as $category)
                     <div class="row py-1">
                         <div class="col-md-9 d-flex align-items-center">
-                            {{-- <a class="d-flex align-items-center gap-2"
-                                href="{{ route('categories-edit', ['id' => $category->id]) }}">
+                            <a class="d-flex align-items-center gap-2" href="{{ route('categories.edit', $category->id) }}">
                                 <span class="color-container" style="background-color: {{ $category->color }}"></span>
-                            </a> --}}
+                            </a>
+
                             {{ $category->name }}
                         </div>
                         <div class="col-md-3 d-flex align-items-end">
                             <!-- Button trigger modal -->
-                            <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                data-bs-target="#modal-{{ $category->id }}">Delete</button>
+                            {{-- <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                            data-bs-target="#modal-{{ $category->id }}">Delete</button>> --}}
+
+                            <button type="button" class="btn btn-danger" data-toggle="modal" 
+                            data-target="#modal-{{ $category->id }}">Delete</button>
                         </div>
                     </div>
 
@@ -78,12 +80,12 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    {{-- <form action="{{ route('categories-destroy', ['id' => $category->id]) }}"
+                                    <form action="{{ route('categories.destroy', $category->id) }}"
                                         method="POST">
                                         @method('DELETE')
                                         @csrf
                                         <button type="submit" class="btn btn-danger">Delete</button>
-                                    </form> --}}
+                                    </form>
 
                                 </div>
                             </div>
@@ -91,5 +93,5 @@
                     </div>
                 @endforeach
 
-        </div>
+            </div>
         @endsection

@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 // POSTS
 Route::resource('/posts', 'App\Http\Controllers\PostController');
+// CATEGORY
 Route::resource('/categories', 'App\Http\Controllers\CategoriesController');
 
 // PRINCIPAL WELCOME
@@ -49,7 +50,6 @@ Route::middleware([
     })->name('dashboard');
     // Route::get('/profile', [UserController::class, 'profile']); 
 });
-// CATEGORY
 // Route::get('/categories',[CategoriesController::class, 'index'])->name('categories');
 // Route::post('categories',[CategoriesController::class, 'store'])->name('categories')->middleware('auth');
 // Route::post('categories/{id}',[CategoriesController::class, 'show'])->name('categories-edit')->middleware('auth');

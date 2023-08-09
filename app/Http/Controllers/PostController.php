@@ -30,7 +30,6 @@ class PostController extends Controller
         // dd($categories);
         return view('posts.index', compact('categories'));
     }
-    // public function index(){$categories = Category::all();return view('news.index', ['categories' => $categories]);}
     public function show(Post $post)
     {
         $similares = Post::where('category_id', $post->category_id)
@@ -66,7 +65,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate(['foto' => 'required|image|max:2048', 'category_id' => 'required',
-                            'txtTitulo' => 'required|max:29']);
+                            'txtTitulo' => 'required|max:39']);
 
         $post = new Post();
         $post->title = $request->txtTitulo;
