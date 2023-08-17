@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
-    protected $guarded = ['id','created_at','updated_at'];
+    protected $guarded = ['id','created_at','updated_at'];//asigna masivamente excepto esto campos
+    // protected $fillable = ['title', 'slug'];//assignacion masiva
+    
     public function getRouteKeyName()
     {
         return "slug";
@@ -22,4 +24,10 @@ class Post extends Model
 
     // Relacion uno a uno Polimorfica
     public function image(){ return $this->morphOne(Image::class, 'imageable');}
+
+    // muchos a uno
+    public function comments(){ return $this->hasMany(Comment::class);}
+
+    // muchos a uno
+    public function likes(){ return $this->hasMany(Like::class);}
 }

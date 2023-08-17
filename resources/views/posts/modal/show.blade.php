@@ -1,4 +1,5 @@
-<div class="modal fade" id="modal-{{ $post->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal-{{ $post->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-lg " role="document" style="max-width: 80%;">
 
         <div class="modal-content">
@@ -14,16 +15,32 @@
                     <div class="col-6 border">
                         <div class="row">
                             <div class="col-5">
-                                <img src="{{ asset($post->image->url) }}" class="mt-2 rounded" width="178"
-                                    height="178" />
-                                <p><input type="checkbox" name="option" id="me_gusta">
-                                    <label for="check1">
-                                        <span class="fa-stack">
-                                            <i class="fa fa-thumbs-up fa-stack-1x"></i>
-                                        </span>
-                                    </label>
-                                    <b id="n_likes"> 0</b> Me gusta
-                                </p>
+                                <div class="row">
+                                    <div class="col"><img src="{{ asset($post->image->url) }}" class="mt-2 rounded"
+                                            width="178" height="178" /></div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <p><input type="checkbox" name="option" id="me_gusta">
+                                            <label for="check1">
+                                                <span class="fa-stack">
+                                                    <i class="fa fa-thumbs-up fa-stack-1x"></i>
+                                                </span>
+                                            </label>
+                                            <b id="n_likes"> 0</b> Me gusta
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <small>Por:<a href="#" title="{{ $post->user_name }}"
+                                                class="">{{ $post->user_name }}</a></small>
+                                    </div>
+                                </div>
+
+
+
                             </div>
                             <div class="col-7">
                                 <div class="row" style="height: 80%;">
@@ -56,7 +73,7 @@
                             <div class="col">
                                 <form id="form_comment">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="comentario" id="comentario"
+                                        <input type="text" class="form-control" name="comment" id="commentText"
                                             placeholder="Realice un comentario">
                                         <div class="input-group-prepend ">
                                             <button class="btn btn-primary" type="submit"><i
@@ -69,9 +86,16 @@
 
                         <div class="row">
                             <div class="col">
-                                <div class="border rounded" id="comentar">
-                                    <!-- <p><b>${res.usuario} : </b>${res.comentarios}</b> -->
-                                </div>
+                                @if ($commentsByPost->has($post->id))
+                                        @foreach ($commentsByPost[$post->id] as $comment)
+                                            <div class="border rounded" name="comment" id="comentar">
+                                                {{ $comment->text }}
+                                            </div>
+                                        @endforeach
+                                @else
+                                    <p>No comments available.</p>
+                                @endif
+                         
                             </div>
                         </div>
                     </div>
